@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import {throttle} from 'lodash';
 
 export default class Truncate extends Component {
     static propTypes = {
@@ -27,7 +28,6 @@ export default class Truncate extends Component {
 
         this.elements = {};
 
-        this.onResize = this.onResize.bind(this);
         this.onTruncate = this.onTruncate.bind(this);
         this.calcTargetWidth = this.calcTargetWidth.bind(this);
         this.measureWidth = this.measureWidth.bind(this);
@@ -100,9 +100,9 @@ export default class Truncate extends Component {
         return text;
     }
 
-    onResize() {
+    onResize = throttle(() => {
         this.calcTargetWidth();
-    }
+    }, 50)
 
     onTruncate(didTruncate) {
         const {
