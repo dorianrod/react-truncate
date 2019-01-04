@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+//import PropTypes from 'prop-types';
 import {throttle} from 'lodash';
 
 export default class Truncate extends Component {
+    /*
     static propTypes = {
         children: PropTypes.node,
         ellipsis: PropTypes.node,
@@ -12,7 +13,7 @@ export default class Truncate extends Component {
         ]),
         trimWhitespace: PropTypes.bool,
         onTruncate: PropTypes.func
-    };
+    };*/
 
     static defaultProps = {
         children: '',
@@ -108,7 +109,7 @@ export default class Truncate extends Component {
             node.getClientRects().length
         );
     }
-    
+
     onResize = throttle(() => {
         this.calcTargetWidth();
     }, 50)
