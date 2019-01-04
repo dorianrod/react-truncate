@@ -1,32 +1,21 @@
 import React, { Component } from 'react';
-//import PropTypes from 'prop-types';
 import {throttle} from 'lodash';
 
 export default class Truncate extends Component {
-    /*
-    static propTypes = {
-        children: PropTypes.node,
-        ellipsis: PropTypes.node,
-        lines: PropTypes.oneOfType([
-            PropTypes.oneOf([false]),
-            PropTypes.number
-        ]),
-        trimWhitespace: PropTypes.bool,
-        onTruncate: PropTypes.func
-    };*/
-
-    static defaultProps = {
-        children: '',
-        ellipsis: '…',
-        lines: 1,
-        trimWhitespace: false
-    };
-
-    state = {};
+    
+    getDefaultProps() {
+        return {
+            children: '',
+            ellipsis: '…',
+            lines: 1,
+            trimWhitespace: false
+        };
+    }
 
     constructor(...args) {
         super(...args);
 
+        this.state = {};
         this.elements = {};
 
         this.onTruncate = this.onTruncate.bind(this);
@@ -340,7 +329,7 @@ export default class Truncate extends Component {
         let text;
 
         const mounted = !!(target && targetWidth);
-
+ 
         if (typeof window !== 'undefined' && mounted) {
             if (lines > 0) {
                 text = getLines().map(renderLine);
